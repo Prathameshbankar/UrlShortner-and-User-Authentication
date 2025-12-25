@@ -1,6 +1,7 @@
 const express = require('express')
 const urlRoute = require('./routes/url')
 const staticRoute = require('./routes/staticRoutes')
+const employeeRouter = require('./routes/employes')
 const path = require('path')
 require('dotenv').config();
 const {connectToMongoDB} = require('./connection')
@@ -17,6 +18,7 @@ app.set('views', path.resolve('./views'))
 connectToMongoDB(process.env.MONGO_URI).then(() => console.log('MongoDB connected'))
 
 app.use('/url', urlRoute);
+app.use('/employee', employeeRouter);
 app.use('/', staticRoute);
 
 
